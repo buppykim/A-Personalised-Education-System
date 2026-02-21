@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
+  
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>SW Personal 2 - Home</title>
 
@@ -20,6 +22,7 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="login.html">
+    
 
 </head>
 <body id="page-top">
@@ -361,6 +364,59 @@
                 </nav>
                 <!-- End of Topbar -->
                 <style>
+            
+/* Instead of fixed width */
+.container {
+  width: 90%;   /* flexible */
+  margin: auto;
+}
+
+/* Text size relative */
+h1 {
+  font-size: 2rem; /* scales with root font size */
+}
+
+p {
+  font-size: 1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Smartphones (portrait) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .navbar {
+    flex-direction: column; /* stack nav items */
+  }
+
+  .sidebar {
+    display: none; /* hide sidebars on phones */
+  }
+
+  .cards {
+    grid-template-columns: 1fr; /* 1 column instead of multiple */
+  }
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap; /* wrap items on small screens */
+  gap: 10px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+
                     .chatbot-container {
                         position: fixed;
                         bottom: 20px;
