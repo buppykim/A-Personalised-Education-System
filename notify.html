@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Notifications</title>
+    <style>
+        body{
+        background-color:grey;
+        }
+    </style>
+</head>
+<body>
+    <h1>Timetable Notifications</h1>
+   <li> <a href="start.html"><button onclick="startNotifications()">Start Notifications</button></a></li>
+   <li> <a href="stop.html"><button onclick="stopNotifications()">Stop Notifications</button></a></li>
+
+    <script>
+        var notificationsInterval;
+
+        function startNotifications() {
+            notificationsInterval = setInterval(checkTimetable, 60000); // Check every minute
+        }
+
+        function stopNotifications() {
+            clearInterval(notificationsInterval);
+        }
+
+        function checkTimetable() {
+            var currentTime = new Date();
+            var currentDay = currentTime.getDay(); // 0 for Sunday, 1 for Monday, etc.
+
+            // Example timetable (replace with your actual timetable)
+            var timetable = [
+                { day: 1, time: "09:00", activity: "Mathematics" },
+                { day: 2, time: "10:30", activity: "Science" },
+                { day: 4, time: "14:00", activity: "English" }
+                // Add more timetable entries as needed
+            ];
+
+            for (var i = 0; i < timetable.length; i++) {
+                var entry = timetable[i];
+                if (entry.day === currentDay) {
+                    var timeParts = entry.time.split(":");
+                    var activityTime = new Date();
+                    activityTime.setHours(parseInt(timeParts[0]));
+                    activityTime.setMinutes(parseInt(timeParts[1]));
+                    activityTime.setSeconds(0);
+                    activityTime.setMilliseconds(0);
+
+                    if (currentTime.getHours() === activityTime.getHours() &&
+                        currentTime.getMinutes() === activityTime.getMinutes()) {
+                        // Notify user about the activity
+                        var notificationMessage = "It's time for " + entry.activity;
+                        alert(notificationMessage); // Replace with your preferred notification method
+                        break; // Stop checking further entries for the current day
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

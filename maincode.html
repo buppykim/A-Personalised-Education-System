@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Question Answering</title>
+</head>
+<body>
+    <h1>Ask a Question</h1>
+    <textarea id="question" rows="4" cols="50"></textarea><br>
+    <button onclick="getAnswer()">Get Answer</button><br>
+    <div id="answer"></div>
+
+    <script>
+        function getAnswer() {
+            var question = document.getElementById("question").value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    document.getElementById("answer").innerHTML = xhr.responseText;
+                }
+            }
+            xhr.open("POST", "/get_answer", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify({ question: question }));
+        }
+    </script>
+</body>
+</html>
